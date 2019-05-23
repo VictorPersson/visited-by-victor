@@ -16,7 +16,7 @@ export default {
   name: 'app',
   components: {
     Header,
-    Visisted,
+    Visited,
     Footer
   }
 }

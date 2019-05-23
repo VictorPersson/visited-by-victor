@@ -1,17 +1,27 @@
 <template>
   <div>
    <ul>
-       <li>A</li>
-       <li>B</li>
-       <li>C</li>
+  
    </ul>
   </div>
 </template>
 
 <script>
-export default {
 
-  }
+
+export default {
+  
+  data: function() {
+    return {
+
+    }
+  },
+
+  metods: {
+
+   },
+   }
+
 
 </script>
 

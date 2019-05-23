@@ -1,8 +1,7 @@
 <template>
   <div>
-   <ul>
-       <li>Australia</li>
-   </ul>
+    <li>
+    </li>
   </div>
 </template>
 

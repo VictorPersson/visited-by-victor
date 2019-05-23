@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-      <h1>Heading</h1>
+      <h1>Victor's Visited</h1>
   </div>
 </template>
 
@@ -11,7 +11,6 @@ export default {
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>

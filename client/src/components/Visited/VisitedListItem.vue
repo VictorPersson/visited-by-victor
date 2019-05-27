@@ -1,7 +1,6 @@
 <template>
   <div>
-    <li>
-    </li>
+    <li> </li>
   </div>
 </template>
 

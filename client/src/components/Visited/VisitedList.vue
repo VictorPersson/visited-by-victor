@@ -1,8 +1,6 @@
 <template>
   <div>
-   <ul>
-  
-   </ul>
+    <ul></ul>
   </div>
 </template>
 
@@ -10,8 +8,8 @@
 
 
 export default {
-  
-  data: function() {
+  props: ['googleResultArray'],
+  data() {
     return {
 
     }
@@ -19,7 +17,7 @@ export default {
 
   metods: {
 
-   },
+    },
    }
 
 

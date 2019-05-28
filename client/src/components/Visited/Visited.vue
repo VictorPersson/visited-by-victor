@@ -2,9 +2,11 @@
   <div>
     <button @click="addPlace">Find me!</button>
     <p>Alt: Enter manually</p>
-    <input type="text">
-    <button @click="testButton">Test</button>
-    <VisitedDataCheck :googleResultArray="currentLocation"/>
+    <input type="text" placeholder="Country or address...">
+    <VisitedDataCheck 
+      v-on:noButtonClicked="isSearched=false" 
+      v-if="isSearched" 
+      :googleResultArray="currentLocation" />
     <VisitedList />
   </div>
 </template>
@@ -20,7 +22,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      currentLocation: []
+      currentLocation: [],
+      isSearched: false
     }
   },
 
@@ -30,10 +33,6 @@ export default {
   },
 
   methods: {
-
-    testButton() {
-      console.log(this.currentLocation)
-    },
 
     addPlace() {
       var options = {
@@ -68,6 +67,7 @@ export default {
         //    console.log(error);
         //  })
 
+        this.isSearched = true
        },
   }
 };

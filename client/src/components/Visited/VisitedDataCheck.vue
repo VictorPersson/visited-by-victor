@@ -10,7 +10,9 @@
 </template>
 
 <script>
+
 import axios from "axios";
+import * as firebase from 'firebase'
 
 export default {
   props: ["googleResultArray"],
@@ -19,25 +21,33 @@ export default {
   },
 
   methods: {
+
+
     removeItem() {
       // Removes the requested object from the array
-      this.googleResultArray = [];
       // Closes the dataCheck pop component
-      this.$emit("noButtonClicked");
+      this.$emit("buttonClicked");
     },
 
+
     saveToFireBase() {
-      axios.get(``)
-        .then(response => {
-          console.log("Test");
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      const database = firebase.database()
+      const ref = database.ref('location');
+
+      // Finds the last item in the googleResultArray (which is always the country)
+      let country =  this.googleResultArray.slice(-1)[0].formatted_address
+
+      let locationData = {
+        location: country,
+        user: 'Victor'
+      }
+
+      ref.push(locationData)
+      this.$emit("buttonClicked");
     }
   }
 };
+
 </script>
 
 <style scoped>

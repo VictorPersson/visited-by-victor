@@ -1,18 +1,25 @@
 <template>
   <div>
-    <ul></ul>
+    <ul>
+      <VisitedListItem />
+    </ul>
   </div>
 </template>
 
 <script>
 
+import VisitedListItem from './VisitedDataCheck.vue';
+
 
 export default {
-  props: ['googleResultArray'],
   data() {
     return {
 
     }
+  },
+
+  components: {
+    VisitedListItem
   },
 
   methods: {

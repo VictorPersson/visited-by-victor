@@ -22,13 +22,11 @@ export default {
 
   methods: {
 
-
     removeItem() {
       // Removes the requested object from the array
       // Closes the dataCheck pop component
       this.$emit("buttonClicked");
     },
-
 
     saveToFireBase() {
       const database = firebase.database()
@@ -41,7 +39,7 @@ export default {
         location: country,
         user: 'Victor'
       }
-
+               
       ref.push(locationData)
       this.$emit("buttonClicked");
     }

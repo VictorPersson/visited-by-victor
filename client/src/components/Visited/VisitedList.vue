@@ -1,14 +1,14 @@
 <template>
   <div>
-    <ul>
+    <ol>
       <VisitedListItem />
-    </ul>
+    </ol>
   </div>
 </template>
 
 <script>
 
-import VisitedListItem from './VisitedDataCheck.vue';
+import VisitedListItem from './VisitedListItem.vue';
 
 
 export default {
@@ -23,7 +23,6 @@ export default {
   },
 
   methods: {
-
     },
    }
 

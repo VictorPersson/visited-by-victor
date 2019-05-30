@@ -4,10 +4,10 @@
     <p>Alt: Enter manually</p>
     <input type="text" placeholder="Country or address...">
     <VisitedDataCheck 
-      v-on:buttonClicked="isSearched=false" 
+      v-on:buttonClicked="isSearched=false"
       v-if="isSearched" 
       :googleResultArray="currentLocation" />
-    <VisitedList v-if="isSearched"/>
+    <VisitedList />
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       currentLocation: [],
-      isSearched: false
+      isSearched: false,
     }
   },
 

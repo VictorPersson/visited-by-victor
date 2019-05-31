@@ -34,10 +34,12 @@ export default {
 
       // Finds the last item in the googleResultArray (which is always the country)
       let country =  this.googleResultArray.slice(-1)[0].formatted_address
+      let currentDate = new Date().toDateString()
+      console.log(typeof currentDate)
 
       let locationData = {
         location: country,
-        user: 'Victor'
+        date: currentDate
       }
                
       ref.push(locationData)

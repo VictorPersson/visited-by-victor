@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="fetchLocations">Load visits</button>
-    <li v-for="(item, index) in locationArray" :key="index">{{ item.location }} <button @click="removeItem(index, item.key)">X</button></li>
+    <li v-for="(item, index) in locationArray" :key="index">Visited <strong>{{ item.location }}</strong> on <strong>{{ item.date }}</strong> <button @click="removeItem(index, item.key)">X</button></li>
   </div>
 </template>
 
@@ -30,12 +30,10 @@ export default {
 
         for (let i = 0; i < firebaseKeys.length; i++) {
           let key = firebaseKeys[i];
-          let user = locations[key].user;
           let location = locations[key].location;
-          console.log(key)
+          let date = locations[key].date;
 
-          updatedLocationsArray.push({user: user, location: location, key: key})
-          console.log(updatedLocationsArray)
+          updatedLocationsArray.push({date: date, location: location, key: key})
         }
       });
 

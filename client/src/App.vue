@@ -24,4 +24,10 @@ export default {
 
 <style>
 
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+
 </style>

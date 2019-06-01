@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <button @click="addPlace">Find me!</button>
-    <p>Alt: Enter manually</p>
-    <input type="text" placeholder="Country or address...">
+  <div class="visitedBox">
+    <button @click="addPlace" class="trackButton">Find me! <i class="fas fa-location-arrow trackButtonIcon"></i></button>
+    <p class="altText">Or, Enter address manually</p>
+    <input class="manualInput" type="text" placeholder="Address, country... ">
     <VisitedDataCheck 
       v-on:buttonClicked="isSearched=false"
       v-if="isSearched" 
@@ -73,5 +73,78 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+  .visitedBox {
+    
+  }
+
+  .trackButton {
+    text-align: center;
+    padding: .5rem 2.5rem .5rem 2.5rem;
+    border-radius: 3rem;
+    background: white;
+    font-size: 1.2rem;
+    color: #1e90ff;
+    transition: all .4s;
+    cursor: pointer;
+    -webkit-box-shadow: 3px 8px 5px -5px rgba(0,0,0,0.21); 
+    box-shadow: 3px 8px 5px -5px rgba(0,0,0,0.21);
+    border-style: solid;
+
+    margin-top: 2rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .trackButton:hover{
+    transform: translateY(-.4rem);
+    -webkit-box-shadow: 3px 1px 5px -5px rgba(0,0,0,0.83); 
+    box-shadow: 3px 1px 5px -5px rgba(0,0,0,0.83);
+  }
+  
+  .trackButton:active{
+    transform: translateY(-.1rem);
+  }
+
+  .trackButton:focus {
+    outline: none;
+  }
+
+  .trackButtonIcon {
+    display: block;
+    padding-top: .4rem;
+  }
+
+  .altText {
+    margin-top: 2rem;
+    text-align: center;
+    color: #57606f;
+  }
+
+  .manualInput {
+    margin-top: 2rem;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 1.4rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 1.4rem;
+    outline: none;
+    border-style: solid;
+    border-width: 0 0 .5px 0;
+  }
+
+  .manualInput:focus {
+    border-width: 0 0 .7px 0;
+    border-color: #1e90ff;
+  }
+
+  .manualInput:focus::placeholder {
+    transition: all .4s;
+    font-size: 1rem;
+    transform: translateY(-.4rem);
+  }
 </style>

@@ -1,7 +1,9 @@
 <template>
   <div>
-    <button @click="fetchLocations">Load visits</button>
-    <li v-for="(item, index) in locationArray" :key="index">Visited <strong>{{ item.location }}</strong> on <strong>{{ item.date }}</strong> <button @click="removeItem(index, item.key)">X</button></li>
+    <li 
+        v-for="(item, index) in locationArray" :key="index">Visited <strong>{{ item.location }}</strong> on <strong>{{ item.date }}</strong> 
+      <button @click="removeItem(index, item.key)">X</button>
+    </li>
   </div>
 </template>
 
@@ -19,24 +21,25 @@ export default {
   methods: {
 
     fetchLocations() {
-      
       const database = firebase.database();
       const ref = database.ref("location");
-      let updatedLocationsArray = [];
+      let updatedLocationsArray = []
 
       ref.on("value", function recivedData(data) {
         let locations = data.val();
         let firebaseKeys = Object.keys(locations);
-
+        
         for (let i = 0; i < firebaseKeys.length; i++) {
           let key = firebaseKeys[i];
           let location = locations[key].location;
           let date = locations[key].date;
-
+          console.log('Before push =>' , updatedLocationsArray)
           updatedLocationsArray.push({date: date, location: location, key: key})
+          console.log('After push =>' , updatedLocationsArray)
         }
+        updatedLocationsArray = [];
+        // Här tömms den rätt utan dubbletter,  men uppdateras ej med nya värdet / DOM uppdateras ej
       });
-
       this.locationArray = updatedLocationsArray
     },
 
@@ -51,7 +54,7 @@ export default {
   },
 
 mounted() {
-    this.fetchLocations()
+   // this.fetchLocations()
 },
 
 };

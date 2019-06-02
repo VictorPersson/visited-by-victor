@@ -7,7 +7,7 @@
       v-on:buttonClicked="isSearched=false"
       v-if="isSearched" 
       :googleResultArray="currentLocation" />
-    <VisitedList v-bind:isMySiblingClicked="isSearched" />
+    <VisitedList />
   </div>
 </template>
 

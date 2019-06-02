@@ -1,8 +1,13 @@
 <template>
-  <div class="visitedListItemBox" v-if=isMySiblingClicked>
+  <div class="visitedListItemBox" >
     <li class="listItem"
-        v-for="(item, index) in locationArray" :key="index">Visited <strong>{{ item.location }}</strong> on <strong>{{ item.date }}</strong> 
-      <button @click="removeItem(index, item.key)" class="removeButton"><i class="fas fa-trash-alt removeButtonIcon"></i></button>
+        v-for="(item, index) in locationArray" 
+        :key="index">Visited 
+        <h1 class="countryHeader">{{ item.location }}</h1>
+        <h3 class="dateHeader">{{ item.date }}</h3> 
+        <button @click="removeItem(index, item.key)" class="removeButton">
+          <i class="fas fa-trash-alt removeButtonIcon"></i>
+        </button>
     </li>
   </div>
 </template>
@@ -12,12 +17,6 @@
 import * as firebase from "firebase";
 
 export default {
-
-  props: {
-    isMySiblingClicked : {
-        type: Boolean
-    }
-},
 
   data() {
     return {
@@ -34,7 +33,7 @@ export default {
       const ref = database.ref("location");
       let updatedLocationsArray = []
 
-      ref.on("value", function recivedData(data) {
+      ref.once("value", function recivedData(data) {
         let locations = data.val();
         let firebaseKeys = Object.keys(locations);
         
@@ -42,10 +41,10 @@ export default {
           let key = firebaseKeys[i];
           updatedLocationsArray.push({date: locations[key].date, location: locations[key].location, key: key})
         }
-        updatedLocationsArray = [];
       });
       this.locationArray = updatedLocationsArray
     },
+
 
     removeItem(index, key) {
       const database = firebase.database();
@@ -55,7 +54,7 @@ export default {
     }
   },
 
-mounted() {
+created() {
     this.fetchLocations()
 },
 
@@ -80,38 +79,35 @@ mounted() {
     box-shadow: 3px 8px 5px -5px rgba(0, 0, 0, 0.21);
   }
 
+  .countryHeader {
+    margin: 0;
+    color: #1e90ff;
+  }
+
 .removeButton {
-  text-align: center;
-  height: 1rem;
-  width: 1rem;
-  border-radius: 10rem;
-  font-size: 1.2rem;
-  color: #ffffff;
-  transition: all 0.4s;
-  cursor: pointer;
-  -webkit-box-shadow: 3px 8px 5px -5px rgba(0, 0, 0, 0.21);
-  box-shadow: 3px 8px 5px -5px rgba(0, 0, 0, 0.21);
-  border-style: solid;
-  margin: .5rem;
-}
-
-.removeButton:hover {
-  transform: translateY(-0.4rem);
-  -webkit-box-shadow: 3px 1px 5px -5px rgba(0, 0, 0, 0.83);
-  box-shadow: 3px 1px 5px -5px rgba(0, 0, 0, 0.83);
-}
-
-.removeButton:active {
-  transform: translateY(-0.1rem);
-}
-
-.removeButton:focus {
-  outline: none;
+  background: none;
+  border: none;
 }
 
 .removeButtonIcon {
-  font-size: .8rem;
-  color: green;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #57606f;
+  transition: all .5s;
+  outline: none;
+}
+
+.removeButtonIcon:hover {
+  transform: translateY(-0.4rem);
+  color: orangered;
+}
+
+.removeButtonIcon:active {
+  transform: translateY(-0.1rem);
+}
+
+.removeButtonIcon:focus {
+  outline: none;
 }
 
 </style>

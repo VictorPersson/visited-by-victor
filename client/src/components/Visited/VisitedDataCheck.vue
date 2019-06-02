@@ -126,4 +126,5 @@ export default {
 .buttonNo {
   background-color: #57606f;
 }
+
 </style>

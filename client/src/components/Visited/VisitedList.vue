@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ol>
+    <ol class="locationList">
       <VisitedListItem />
     </ol>
   </div>
@@ -30,5 +30,9 @@ export default {
 </script>
 
 <style scoped>
+
+  .locationList {
+    padding: 0;
+  }
 
 </style>

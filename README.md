@@ -46,7 +46,15 @@ module.exports = APIKey
   <li> Öppna webbläsare och navigera till http://localhost:8080/ </li>
 </ol>
 
-## Made by
+## 5. Dependencies / lib / frameworks
+<ul>
+  <li> Vue : version ^2.6.10 </li>
+  <li> core-js : version ^2.6.5 </li>
+  <li> Firebase : version ^6.1.0</li>
+  <li> Axios" : version ^0.18.0"</li>
+</ul>
+
+## 7. Skapad av
 
 <ul>
   <li> <a href="https://github.com/VictorPersson ">Victor Persson </a></li>

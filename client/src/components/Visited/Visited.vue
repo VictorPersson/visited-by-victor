@@ -1,13 +1,16 @@
 <template>
   <div class="visitedBox">
-    <button @click="addPlace" class="trackButton">Find me! <i class="fas fa-location-arrow trackButtonIcon"></i></button>
-    <p class="altText">Or, Enter address manually</p>
-    <input class="manualInput" type="text" placeholder="Address, country... ">
+    <button @click="trackUser" class="trackButton">Find me! <i class="fas fa-location-arrow trackButtonIcon"></i></button>
+    <div>
+      <p class="altText">Or, Enter address manually</p>
+      <i @click="saveManualInput" class="manualinputButton fas fa-chevron-right"></i>
+      <input :value="countryInput" v-on:keyup.enter="saveManualInput" class="manualInput" type="text" placeholder="Country... ">
+    </div>
     <VisitedDataCheck 
-      v-on:buttonClicked="isSearched=false"
+      v-on:buttonClicked="(isSearched=false, showList=true)"
       v-if="isSearched" 
       :googleResultArray="currentLocation" />
-    <VisitedList />
+    <VisitedList v-if="showList" />
   </div>
 </template>
 
@@ -22,8 +25,10 @@ import axios from "axios";
 export default {
   data() {
     return {
+      countryInput: '',
       currentLocation: [],
       isSearched: false,
+      showList: true
     }
   },
 
@@ -34,7 +39,14 @@ export default {
 
   methods: {
 
-    addPlace() {
+    saveManualInput() {
+      this.currentLocation.push({formatted_address: event.target.value})
+      this.countryInput = '';
+      this.reloadList = false
+      this.showList = true
+    },
+
+    trackUser() {
       var options = {
         enableHighAccuracy: false,
         maximumAge: 0
@@ -66,7 +78,7 @@ export default {
         //  .catch((error) => {
         //    console.log(error);
         //  })
-
+        this.showList = false
         this.isSearched = true
        },
   }
@@ -98,7 +110,7 @@ export default {
     margin-right: auto;
   }
 
-  .trackButton:hover{
+  .trackButton:hover {
     transform: translateY(-.4rem);
     -webkit-box-shadow: 3px 1px 5px -5px rgba(0,0,0,0.83); 
     box-shadow: 3px 1px 5px -5px rgba(0,0,0,0.83);
@@ -124,7 +136,6 @@ export default {
   }
 
   .manualInput {
-    margin-top: 2rem;
     font-family: 'Libre Franklin', sans-serif;
     font-size: 1.4rem;
     display: block;
@@ -146,5 +157,19 @@ export default {
     transition: all .4s;
     font-size: 1rem;
     transform: translateY(-.4rem);
+  }
+
+  .manualinputButton {
+    cursor: pointer;
+    margin-top: 1rem;
+    color: #1e90ff;
+    font-size: 1.7rem;
+    position: absolute;
+    margin-left: 66%;
+    transition: all .6s;
+  }
+
+  .manualinputButton:hover {
+    transform: translateX(.5rem);
   }
 </style>

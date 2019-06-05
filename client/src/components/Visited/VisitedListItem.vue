@@ -4,7 +4,7 @@
         v-for="(item, index) in locationArray" 
         :key="index">Visited 
         <h1 class="countryHeader">{{ item.location }}</h1>
-        <h3 class="dateHeader">{{ item.date }}</h3> 
+        <h3 class="dateHeader">{{ item.day }} / {{ item.month }} / {{ item.year }} </h3> 
         <button @click="removeItem(index, item.key)" class="removeButton">
           <i class="fas fa-trash-alt removeButtonIcon"></i>
         </button>
@@ -25,7 +25,6 @@ export default {
     
   },
 
-
   methods: {
 
     fetchLocations() {
@@ -39,10 +38,23 @@ export default {
         
         for (let i = 0; i < firebaseKeys.length; i++) {
           let key = firebaseKeys[i];
-          updatedLocationsArray.push({date: locations[key].date, location: locations[key].location, key: key})
-        }
+          updatedLocationsArray.push({
+              day: locations[key].day, 
+              month: locations[key].month, 
+              year: locations[key].year, 
+              location: locations[key].location, 
+              key: key})
+          }
       });
+
       this.locationArray = updatedLocationsArray
+      //this.locationArray.sort()
+      //this.locationArray.reverse()
+       // Måste använda Vue.set() ?
+
+       // Det finns 2 problem. 1: Denna method körs endast när sidan laddas. När man lägger till nytt objekt så görs det, men denna method körs inte igen.
+       // Vad jag en gör i denna method så kommer inte det ske förens created() sker?
+
     },
 
 
@@ -54,7 +66,8 @@ export default {
     }
   },
 
-created() {
+mounted() {
+    console.log("Nu körs this.fetchLocations() i created()")
     this.fetchLocations()
 },
 
@@ -72,11 +85,11 @@ created() {
   }
 
   .listItem {
-    margin: .5rem;
+    margin: 1rem;
     padding: 3rem;
-    /* list-style: none; */
-    -webkit-box-shadow: 3px 8px 5px -5px rgba(0, 0, 0, 0.21);
-    box-shadow: 3px 8px 5px -5px rgba(0, 0, 0, 0.21);
+    -webkit-box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
+    -moz-box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
+    box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
   }
 
   .countryHeader {

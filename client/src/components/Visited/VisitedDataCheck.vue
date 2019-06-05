@@ -2,8 +2,7 @@
   <div class="visitedDataCheckBox">
     <p
       class="dataCheckPara"
-    >My advanced AI tells me that you are currently in: <p class="locationPara">{{ googleResultArray.slice(-1)[0].formatted_address }}</p></p>
-    <!-- try - catch -> This here generates error since before button click, no array is here, hence no formatted address -->
+    >My advanced AI tells me that you are currently in: <p class="locationPara">{{ googleResultArray.slice(-1)[0].formatted_address }}</p>
     <p class="dataCheckPara">Is this correct?</p>
     <div class="buttonBox">
       <button @click="removeItem" class="checkButton buttonNo">
@@ -13,7 +12,7 @@
         <i class="checkButtonIconNo fas fa-check"></i>
       </button>
     </div>
-    <!-- <p>Full Street: {{ googleResultArray[0].formatted_address  }} </p> -->
+
   </div>
 </template>
 
@@ -39,17 +38,26 @@ export default {
       const ref = database.ref("location");
 
       // Finds the last item in the googleResultArray (which is always the country)
+      console.log(this.googleResultArray)
       let country = this.googleResultArray.slice(-1)[0].formatted_address;
-      let currentDate = new Date().toDateString();
-      console.log(typeof currentDate);
+      let currentDate = new Date();
+      let year = currentDate.getFullYear();
+      let month = currentDate.getMonth() + 1;
+      let day = currentDate.getDate();
 
       let locationData = {
         location: country,
-        date: currentDate
+        year: year,
+        month: month,
+        day: day
       };
 
       ref.push(locationData);
       this.$emit("buttonClicked");
+
+
+
+      // Nu måste listan uppdateras!
     }
   }
 };

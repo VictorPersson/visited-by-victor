@@ -76,28 +76,30 @@ mounted() {
 
 <style scoped>
 
-  .visitedListItemBox {
-    margin-top: 4.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+.visitedListItemBox {
+  margin-top: 4.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+ }
 
-  .listItem {
-    margin: 1rem;
-    padding: 3rem;
-    -webkit-box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
-    -moz-box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
-    box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
-  }
+.listItem {
+  min-width: 8rem;
+  margin: 1rem;
+  padding: 2rem;
+  -webkit-box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
+  -moz-box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
+  box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
+  animation: flip-horizontal-bottom .9s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
 
-  .countryHeader {
-    margin: 0;
-    color: #1e90ff;
-  }
+.countryHeader {
+  margin: 0;
+  color: #1e90ff;
+}
 
-.removeButton {
+.removeButton { 
   background: none;
   border: none;
 }
@@ -121,6 +123,22 @@ mounted() {
 
 .removeButtonIcon:focus {
   outline: none;
+}
+
+@keyframes flip-horizontal-bottom {
+  0% {
+            transform: rotateX(180deg);
+  }
+  100% {
+            transform: rotateX(360deg);
+  }
+}
+
+  @media only screen and (max-width: 600px) {
+    .listItem {
+        width: 65%;
+        text-align: center;
+    }
 }
 
 </style>

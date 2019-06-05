@@ -2,9 +2,9 @@
   <div class="visitedBox">
     <button @click="trackUser" class="trackButton">Find me! <i class="fas fa-location-arrow trackButtonIcon"></i></button>
     <div>
-      <p class="altText">Or, Enter address manually</p>
+      <p class="altText">Or, enter visited location manually</p>
       <i @click="saveManualInput" class="manualinputButton fas fa-chevron-right"></i>
-      <input :value="countryInput" v-on:keyup.enter="saveManualInput" class="manualInput" type="text" placeholder="Country... ">
+      <input v-model="countryInput" v-on:keyup.enter="saveManualInput" class="manualInput" type="text" placeholder="Country... ">
     </div>
     <VisitedDataCheck 
       v-on:buttonClicked="(isSearched=false, showList=true)"
@@ -25,7 +25,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      countryInput: '',
+      countryInput: null,
       currentLocation: [],
       isSearched: false,
       showList: true
@@ -40,10 +40,11 @@ export default {
   methods: {
 
     saveManualInput() {
-      this.currentLocation.push({formatted_address: event.target.value})
+      console.log(this.countryInput)
+      this.currentLocation.push({formatted_address: this.countryInput})
       this.countryInput = '';
-      this.reloadList = false
-      this.showList = true
+      this.showList = false
+      this.isSearched = true
     },
 
     trackUser() {
@@ -86,10 +87,6 @@ export default {
 </script>
 
 <style scoped>
-
-  .visitedBox {
-    
-  }
 
   .trackButton {
     text-align: center;
@@ -160,16 +157,24 @@ export default {
   }
 
   .manualinputButton {
+    padding-right: 2rem;
+    padding-left: 2rem;
     cursor: pointer;
     margin-top: 1rem;
     color: #1e90ff;
     font-size: 1.7rem;
     position: absolute;
-    margin-left: 66%;
+    margin-left: 57vw;
     transition: all .6s;
   }
 
   .manualinputButton:hover {
     transform: translateX(.5rem);
   }
+
+  @media only screen and (max-width: 768px) {
+    .manualinputButton {
+        margin-left: 78vw;
+    }
+}
 </style>

@@ -34,6 +34,7 @@ export default {
   .locationList {
     padding: 0;
     margin-bottom: 5rem;
+    list-style: none;
   }
 
 </style>

@@ -28,8 +28,8 @@ export default {
 
   methods: {
     removeItem() {
-      // Removes the requested object from the array
-      // Closes the dataCheck pop component
+      // Removes/does nothing with the requested object from the array
+      // Closes the dataCheck component
       this.$emit("buttonClicked");
     },
 
@@ -38,7 +38,6 @@ export default {
       const ref = database.ref("location");
 
       // Finds the last item in the googleResultArray (which is always the country)
-      console.log(this.googleResultArray)
       let country = this.googleResultArray.slice(-1)[0].formatted_address;
       let currentDate = new Date();
       let year = currentDate.getFullYear();
@@ -54,10 +53,6 @@ export default {
 
       ref.push(locationData);
       this.$emit("buttonClicked");
-
-
-
-      // Nu måste listan uppdateras!
     }
   }
 };
@@ -98,8 +93,6 @@ export default {
   color: #ffffff;
   transition: all 0.4s;
   cursor: pointer;
-  -webkit-box-shadow: 3px 8px 5px -5px rgba(0, 0, 0, 0.21);
-  box-shadow: 3px 8px 5px -5px rgba(0, 0, 0, 0.21);
   border-style: solid;
   display: inline-block;
   margin: .5rem;
@@ -107,8 +100,6 @@ export default {
 
 .checkButton:hover {
   transform: translateY(-0.4rem);
-  -webkit-box-shadow: 3px 1px 5px -5px rgba(0, 0, 0, 0.83);
-  box-shadow: 3px 1px 5px -5px rgba(0, 0, 0, 0.83);
 }
 
 .checkButton:active {
@@ -133,6 +124,17 @@ export default {
 
 .buttonNo {
   background-color: #57606f;
+}
+
+  @media only screen and (max-width: 400px) {
+    .locationPara {
+      font-size: 1.4rem;
+    }
+
+    .dataCheckPara {
+      margin-top: 1.2rem;
+      font-size: .8rem;
+    }
 }
 
 </style>

@@ -115,7 +115,7 @@ export default {
   cursor: pointer;
   -webkit-box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
   -moz-box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
-  box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
+  box-shadow: -2px 4px 14px -1px rgba(46,74,117,0.33);
   border-style: solid;
 
   margin-top: 2rem;
@@ -127,7 +127,7 @@ export default {
 .trackButton:hover {
   transform: translateY(-0.4rem);
   -webkit-box-shadow: 3px 1px 5px -5px rgba(0, 0, 0, 0.83);
-  box-shadow: 3px 1px 5px -5px rgba(0, 0, 0, 0.83);
+  box-shadow: 3px 2px 9px -6px rgba(0, 0, 0, 0.83);
 }
 
 .trackButton:active {

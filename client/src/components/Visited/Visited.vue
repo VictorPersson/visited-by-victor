@@ -15,6 +15,7 @@
         placeholder="Country... "
       >
     </div>
+    <VisitedLoadingScreen v-if="isLoading" />
     <VisitedDataCheck
       v-on:buttonClicked="(isSearched=false, showList=true)"
       v-if="isSearched"
@@ -27,6 +28,7 @@
 <script>
 import VisitedList from "./VisitedList.vue";
 import VisitedDataCheck from "./VisitedDataCheck.vue";
+import VisitedLoadingScreen from "./VisitedLoadingScreen.vue";
 
 import APIKey from "../../config.js";
 import axios from "axios";
@@ -39,13 +41,15 @@ export default {
       latitude: null,
       longitude: null,
       isSearched: false,
-      showList: true
+      showList: true,
+      isLoading: false
     };
   },
 
   components: {
     VisitedList,
-    VisitedDataCheck
+    VisitedDataCheck,
+    VisitedLoadingScreen
   },
 
   methods: {
@@ -76,12 +80,8 @@ export default {
         )
 
         .then(response => {
-          console.log("Test");
-
           this.currentLocation = response.data.results;
-          console.log(response);
-
-          this.showList = false;
+          this.isLoading = false;
           this.isSearched = true;
         })
         .catch(error => {
@@ -90,6 +90,9 @@ export default {
     },
 
     loadLocation() {
+      this.showList = false;
+      this.isLoading = true;
+
       this.trackUser(location => {
         this.latitude = location.coords.latitude
         this.longitude = location.coords.longitude
@@ -110,8 +113,9 @@ export default {
   color: #1e90ff;
   transition: all 0.4s;
   cursor: pointer;
-  -webkit-box-shadow: 3px 8px 5px -5px rgba(0, 0, 0, 0.21);
-  box-shadow: 3px 8px 5px -5px rgba(0, 0, 0, 0.21);
+  -webkit-box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
+  -moz-box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
+  box-shadow: -1px 4px 14px -1px rgba(46,74,117,0.33);
   border-style: solid;
 
   margin-top: 2rem;

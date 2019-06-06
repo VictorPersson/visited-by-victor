@@ -15,9 +15,11 @@ export default {
 
   .footerBox {
     background: linear-gradient(to right, #1e90ff, #3742fa);
-    position: fixed;
     width: 100vw;
     bottom: 0;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    
   }
 
   .footerText {
@@ -25,6 +27,7 @@ export default {
     font-family: 'Libre Franklin', sans-serif;
     text-align: center;
     font-size: 1rem;
+    margin-bottom: 0;
   }
 
 </style>

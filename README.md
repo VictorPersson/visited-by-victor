@@ -2,7 +2,7 @@
   <img src="https://i.imgur.com/Kf5P2ae.png" width="250"><br>
 </p>
 
-Visited by Victor är en webbapplikation som låter användaren spåra sin nuvarade position, samt välja att spara denna för att kunna komma ihåg var man har varit och när. Detta kan komma bli mycket användbart om man exempelvis tänker ansöka om studentvisum till Australien. Detta kräver nämligen att man, med exakta datum, beskrver samtliga länder man besökt de senaste 10 åren. 
+Visited by Victor är en webbapplikation som låter användaren spåra sin nuvarade position med koordinater, samt välja att spara denna som formaterad land/address för att kunna komma ihåg var man har varit och när. Detta kan komma bli mycket användbart om man exempelvis tänker ansöka om studentvisum till Australien. Detta kräver nämligen att man, med exakta datum, beskrver samtliga länder man besökt de senaste 10 åren. 
 
 Projektet går under MIT licens och det är fritt fram att kopiera, bygga eller förstöra appen, givet att man följer Google Maps, Google Firebase samt licensens riktlinjer. 
 
